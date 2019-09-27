@@ -14,6 +14,6 @@ RUN npm run build
 # deploy step
 FROM nginx
 
-WORKDIR /app
+EXPOSE 80
 
 COPY --from=builder /app/build /usr/share/nginx/html
