@@ -8,3 +8,17 @@ before_install:
 
 script:
   - docker run -e CI=true comoser/docker-k8s-1 npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "docker-k8s-1"
+  env: "DockerK8s1-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-003651421893"
+  bucket_path: "docker-k8s-1"
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_ACCESS_KEY
